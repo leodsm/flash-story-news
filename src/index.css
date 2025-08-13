@@ -36,23 +36,27 @@ All colors MUST be HSL.
     --input: 214.3 31.8% 91.4%;
     --ring: 222.2 84% 4.9%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
+
+    /* Brand palette */
+    --brand-blue: 212 93% 52%;
+    --brand-orange: 24 95% 55%;
+    --brand-red: 0 84% 60%;
+    --brand-green: 142 70% 40%;
+
+    /* Effects */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--brand-blue)), hsl(var(--brand-orange)));
+    --shadow-elevated: 0 12px 40px -12px hsl(var(--brand-blue) / 0.35);
+    --story-ring: conic-gradient(from 180deg at 50% 50%, hsl(var(--brand-orange)), hsl(var(--brand-red)), hsl(var(--brand-green)), hsl(var(--brand-blue)), hsl(var(--brand-orange)));
   }
 
   .dark {
@@ -91,6 +95,16 @@ All colors MUST be HSL.
     --sidebar-accent-foreground: 240 4.8% 95.9%;
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
+
+    /* Brand palette (dark mode keeps same hues) */
+    --brand-blue: 212 93% 56%;
+    --brand-orange: 24 95% 58%;
+    --brand-red: 0 84% 62%;
+    --brand-green: 142 70% 44%;
+
+    --gradient-primary: linear-gradient(135deg, hsl(var(--brand-blue)), hsl(var(--brand-orange)));
+    --shadow-elevated: 0 12px 40px -12px hsl(var(--brand-blue) / 0.35);
+    --story-ring: conic-gradient(from 180deg at 50% 50%, hsl(var(--brand-orange)), hsl(var(--brand-red)), hsl(var(--brand-green)), hsl(var(--brand-blue)), hsl(var(--brand-orange)));
   }
 }
 
@@ -100,6 +114,15 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans;
   }
+}
+
+@layer utilities {
+  .story-gradient { background: var(--story-ring); }
+  .card-elevated { box-shadow: var(--shadow-elevated); }
+  .gradient-text { background-image: var(--gradient-primary); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 }
